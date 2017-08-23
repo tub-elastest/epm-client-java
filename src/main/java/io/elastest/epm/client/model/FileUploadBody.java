@@ -13,14 +13,15 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Objects;
 
 /**
  * FileUploadBody
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class FileUploadBody {
   @SerializedName("remotePath")
   private String remotePath = null;
@@ -66,7 +67,7 @@ public class FileUploadBody {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -88,7 +89,7 @@ public class FileUploadBody {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileUploadBody {\n");
-    
+
     sb.append("    remotePath: ").append(toIndentedString(remotePath)).append("\n");
     sb.append("    hostPath: ").append(toIndentedString(hostPath)).append("\n");
     sb.append("}");
@@ -99,7 +100,7 @@ public class FileUploadBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

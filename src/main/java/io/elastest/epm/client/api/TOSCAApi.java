@@ -13,22 +13,13 @@
 
 package io.elastest.epm.client.api;
 
-import io.elastest.epm.client.ApiCallback;
-import io.elastest.epm.client.ApiClient;
-import io.elastest.epm.client.ApiException;
-import io.elastest.epm.client.ApiResponse;
-import io.elastest.epm.client.Configuration;
-import io.elastest.epm.client.Pair;
-import io.elastest.epm.client.ProgressRequestBody;
-import io.elastest.epm.client.ProgressResponseBody;
+
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-
+import io.elastest.epm.client.*;
 import io.elastest.epm.client.model.ResourceGroup;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +46,7 @@ public class TOSCAApi {
     }
 
     /* Build call for deployToscaTemplate */
-    private com.squareup.okhttp.Call deployToscaTemplateCall(ResourceGroup body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deployToscaTemplateCall(String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
         
         // create path and map variables
@@ -74,7 +65,7 @@ public class TOSCAApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "multipart/form-data"
+            "text/yaml"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -82,7 +73,7 @@ public class TOSCAApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -96,7 +87,7 @@ public class TOSCAApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deployToscaTemplateValidateBeforeCall(ResourceGroup body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deployToscaTemplateValidateBeforeCall(String body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'body' is set
         if (body == null) {
@@ -120,7 +111,7 @@ public class TOSCAApi {
      * @return ResourceGroup
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ResourceGroup deployToscaTemplate(ResourceGroup body) throws ApiException {
+    public ResourceGroup deployToscaTemplate(String body) throws ApiException {
         ApiResponse<ResourceGroup> resp = deployToscaTemplateWithHttpInfo(body);
         return resp.getData();
     }
@@ -132,7 +123,7 @@ public class TOSCAApi {
      * @return ApiResponse&lt;ResourceGroup&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<ResourceGroup> deployToscaTemplateWithHttpInfo(ResourceGroup body) throws ApiException {
+    public ApiResponse<ResourceGroup> deployToscaTemplateWithHttpInfo(String body) throws ApiException {
         com.squareup.okhttp.Call call = deployToscaTemplateValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<ResourceGroup>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -146,7 +137,7 @@ public class TOSCAApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deployToscaTemplateAsync(ResourceGroup body, final ApiCallback<ResourceGroup> callback) throws ApiException {
+    public com.squareup.okhttp.Call deployToscaTemplateAsync(String body, final ApiCallback<ResourceGroup> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

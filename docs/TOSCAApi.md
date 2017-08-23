@@ -23,7 +23,7 @@ The TOSCA template defines VDUs, Networks and the PoPs where to allocate the vir
 
 
 TOSCAApi apiInstance = new TOSCAApi();
-ResourceGroup body = new ResourceGroup(); // ResourceGroup | TOSCA formatted template
+String body = "body_example"; // String | TOSCA formatted template
 try {
     ResourceGroup result = apiInstance.deployToscaTemplate(body);
     System.out.println(result);
@@ -37,7 +37,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ResourceGroup**](ResourceGroup.md)| TOSCA formatted template |
+ **body** | **String**| TOSCA formatted template |
 
 ### Return type
 
@@ -49,6 +49,6 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: text/yaml
  - **Accept**: application/json
 

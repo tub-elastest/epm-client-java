@@ -13,22 +13,11 @@
 
 package io.elastest.epm.client.api;
 
-import io.elastest.epm.client.ApiCallback;
-import io.elastest.epm.client.ApiClient;
-import io.elastest.epm.client.ApiException;
-import io.elastest.epm.client.ApiResponse;
-import io.elastest.epm.client.Configuration;
-import io.elastest.epm.client.Pair;
-import io.elastest.epm.client.ProgressRequestBody;
-import io.elastest.epm.client.ProgressResponseBody;
-
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-
+import io.elastest.epm.client.*;
 import io.elastest.epm.client.model.VDU;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,7 +72,7 @@ public class VDUApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -95,23 +84,23 @@ public class VDUApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call deleteVduValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling deleteVdu(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = deleteVduCall(id, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -176,7 +165,7 @@ public class VDUApi {
     /* Build call for deployVdu */
     private com.squareup.okhttp.Call deployVduCall(VDU body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
-        
+
         // create path and map variables
         String localVarPath = "/vdu".replaceAll("\\{format\\}","json");
 
@@ -201,7 +190,7 @@ public class VDUApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -213,23 +202,23 @@ public class VDUApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call deployVduValidateBeforeCall(VDU body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'body' is set
         if (body == null) {
             throw new ApiException("Missing the required parameter 'body' when calling deployVdu(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = deployVduCall(body, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -294,7 +283,7 @@ public class VDUApi {
     /* Build call for getAllVdus */
     private com.squareup.okhttp.Call getAllVdusCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/vdu".replaceAll("\\{format\\}","json");
 
@@ -311,7 +300,7 @@ public class VDUApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -319,7 +308,7 @@ public class VDUApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -331,18 +320,18 @@ public class VDUApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call getAllVdusValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        
+
+
         com.squareup.okhttp.Call call = getAllVdusCall(progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -404,7 +393,7 @@ public class VDUApi {
     /* Build call for getVduById */
     private com.squareup.okhttp.Call getVduByIdCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/vdu/{id}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -422,7 +411,7 @@ public class VDUApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -430,7 +419,7 @@ public class VDUApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -442,23 +431,23 @@ public class VDUApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call getVduByIdValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling getVduById(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = getVduByIdCall(id, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -523,7 +512,7 @@ public class VDUApi {
     /* Build call for updateVdu */
     private com.squareup.okhttp.Call updateVduCall(String id, VDU body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
-        
+
         // create path and map variables
         String localVarPath = "/vdu/{id}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -549,7 +538,7 @@ public class VDUApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))

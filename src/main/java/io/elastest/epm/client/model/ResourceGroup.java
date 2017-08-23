@@ -13,19 +13,19 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A Resource Group defines a bundle of VDUs and virtual networks which belongs together. It includes also the Point-of-Presences where the virtual resources have to be allocated.
  */
 @ApiModel(description = "A Resource Group defines a bundle of VDUs and virtual networks which belongs together. It includes also the Point-of-Presences where the virtual resources have to be allocated.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class ResourceGroup {
   @SerializedName("id")
   private String id = null;
@@ -149,7 +149,7 @@ public class ResourceGroup {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -174,7 +174,7 @@ public class ResourceGroup {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceGroup {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    vdus: ").append(toIndentedString(vdus)).append("\n");
@@ -188,7 +188,7 @@ public class ResourceGroup {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -13,18 +13,17 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Date;
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import org.joda.time.DateTime;
+
+import java.util.Objects;
 
 /**
  * An event contains certain life cycle information of the VDU at a specific time.
  */
 @ApiModel(description = "An event contains certain life cycle information of the VDU at a specific time.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class Event {
   @SerializedName("description")
   private String description = null;
@@ -91,7 +90,7 @@ public class Event {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -114,7 +113,7 @@ public class Event {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Event {\n");
-    
+
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
@@ -126,7 +125,7 @@ public class Event {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

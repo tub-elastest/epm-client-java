@@ -13,25 +13,14 @@
 
 package io.elastest.epm.client.api;
 
-import io.elastest.epm.client.ApiCallback;
-import io.elastest.epm.client.ApiClient;
-import io.elastest.epm.client.ApiException;
-import io.elastest.epm.client.ApiResponse;
-import io.elastest.epm.client.Configuration;
-import io.elastest.epm.client.Pair;
-import io.elastest.epm.client.ProgressRequestBody;
-import io.elastest.epm.client.ProgressResponseBody;
-
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
-
+import io.elastest.epm.client.*;
 import io.elastest.epm.client.model.CommandExecutionBody;
-import java.io.File;
 import io.elastest.epm.client.model.FileDownloadBody;
 import io.elastest.epm.client.model.FileUploadBody;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +75,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -98,28 +87,23 @@ public class RuntimeApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call downloadFileFromInstanceValidateBeforeCall(String id, FileDownloadBody fileDownloadBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling downloadFileFromInstance(Async)");
         }
-        
+
         // verify the required parameter 'fileDownloadBody' is set
         if (fileDownloadBody == null) {
             throw new ApiException("Missing the required parameter 'fileDownloadBody' when calling downloadFileFromInstance(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = downloadFileFromInstanceCall(id, fileDownloadBody, progressListener, progressRequestListener);
         return call;
-
-        
-        
-        
-        
     }
 
     /**
@@ -187,7 +171,7 @@ public class RuntimeApi {
     /* Build call for executeOnInstance */
     private com.squareup.okhttp.Call executeOnInstanceCall(String id, CommandExecutionBody commandExecutionBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = commandExecutionBody;
-        
+
         // create path and map variables
         String localVarPath = "/runtime/{id}/action/execute".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -213,7 +197,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -225,28 +209,28 @@ public class RuntimeApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call executeOnInstanceValidateBeforeCall(String id, CommandExecutionBody commandExecutionBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling executeOnInstance(Async)");
         }
-        
+
         // verify the required parameter 'commandExecutionBody' is set
         if (commandExecutionBody == null) {
             throw new ApiException("Missing the required parameter 'commandExecutionBody' when calling executeOnInstance(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = executeOnInstanceCall(id, commandExecutionBody, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -314,7 +298,7 @@ public class RuntimeApi {
     /* Build call for startInstance */
     private com.squareup.okhttp.Call startInstanceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/runtime/{id}/action/start".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -326,13 +310,13 @@ public class RuntimeApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -340,7 +324,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -352,23 +336,23 @@ public class RuntimeApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call startInstanceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling startInstance(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = startInstanceCall(id, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -429,7 +413,7 @@ public class RuntimeApi {
     /* Build call for stopInstance */
     private com.squareup.okhttp.Call stopInstanceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/runtime/{id}/action/stop".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -441,13 +425,13 @@ public class RuntimeApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            
+
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -455,7 +439,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -467,23 +451,23 @@ public class RuntimeApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call stopInstanceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling stopInstance(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = stopInstanceCall(id, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -544,7 +528,7 @@ public class RuntimeApi {
     /* Build call for uploadFileToInstanceByFile */
     private com.squareup.okhttp.Call uploadFileToInstanceByFileCall(String id, String remotePath, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
-        
+
         // create path and map variables
         String localVarPath = "/runtime/{id}/file".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -560,7 +544,7 @@ public class RuntimeApi {
         localVarFormParams.put("file", file);
 
         final String[] localVarAccepts = {
-            
+
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -574,7 +558,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
@@ -586,33 +570,33 @@ public class RuntimeApi {
         String[] localVarAuthNames = new String[] {  };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
-    
+
     @SuppressWarnings("rawtypes")
     private com.squareup.okhttp.Call uploadFileToInstanceByFileValidateBeforeCall(String id, String remotePath, File file, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
+
         // verify the required parameter 'id' is set
         if (id == null) {
             throw new ApiException("Missing the required parameter 'id' when calling uploadFileToInstanceByFile(Async)");
         }
-        
+
         // verify the required parameter 'remotePath' is set
         if (remotePath == null) {
             throw new ApiException("Missing the required parameter 'remotePath' when calling uploadFileToInstanceByFile(Async)");
         }
-        
+
         // verify the required parameter 'file' is set
         if (file == null) {
             throw new ApiException("Missing the required parameter 'file' when calling uploadFileToInstanceByFile(Async)");
         }
-        
-        
+
+
         com.squareup.okhttp.Call call = uploadFileToInstanceByFileCall(id, remotePath, file, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -679,7 +663,7 @@ public class RuntimeApi {
     /* Build call for uploadFileToInstanceByPath */
     private com.squareup.okhttp.Call uploadFileToInstanceByPathCall(String id, FileUploadBody fileUploadBody, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = fileUploadBody;
-        
+
         // create path and map variables
         String localVarPath = "/runtime/{id}/path".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
@@ -691,7 +675,7 @@ public class RuntimeApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-            
+
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -705,7 +689,7 @@ public class RuntimeApi {
         if(progressListener != null) {
             apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                public com.squareup.okhttp.Response intercept(Chain chain) throws IOException {
                     com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))

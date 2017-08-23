@@ -13,19 +13,19 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This entity contains information about the Point-of-Presence (PoP)
  */
 @ApiModel(description = "This entity contains information about the Point-of-Presence (PoP)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class PoP {
   @SerializedName("accessInfo")
   private List<KeyValuePair> accessInfo = new ArrayList<KeyValuePair>();
@@ -144,7 +144,7 @@ public class PoP {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -169,7 +169,7 @@ public class PoP {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PoP {\n");
-    
+
     sb.append("    accessInfo: ").append(toIndentedString(accessInfo)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    interfaceEndpoint: ").append(toIndentedString(interfaceEndpoint)).append("\n");
@@ -183,7 +183,7 @@ public class PoP {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

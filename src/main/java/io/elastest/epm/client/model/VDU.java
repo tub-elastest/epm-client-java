@@ -13,19 +13,19 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A Virtual Deployment Unit (VDU) describes the capabilities of virtualized computing (Containers, VMs) and networking resources.
  */
 @ApiModel(description = "A Virtual Deployment Unit (VDU) describes the capabilities of virtualized computing (Containers, VMs) and networking resources.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class VDU {
   @SerializedName("computeId")
   private String computeId = null;
@@ -58,28 +58,28 @@ public class VDU {
    * Gets or Sets status
    */
   public enum StatusEnum {
-    @SerializedName("INITIALIZING")
+    @SerializedName("initializing")
     INITIALIZING("initializing"),
     
-    @SerializedName("INITIALIZED")
+    @SerializedName("initialized")
     INITIALIZED("initialized"),
     
-    @SerializedName("DEPLOYING")
+    @SerializedName("deploying")
     DEPLOYING("deploying"),
     
-    @SerializedName("DEPLOYED")
+    @SerializedName("deployed")
     DEPLOYED("deployed"),
     
-    @SerializedName("RUNNING")
+    @SerializedName("running")
     RUNNING("running"),
     
-    @SerializedName("UNDEPLOYING")
+    @SerializedName("undeploying")
     UNDEPLOYING("undeploying"),
     
-    @SerializedName("UNDEPLOYED")
+    @SerializedName("undeployed")
     UNDEPLOYED("undeployed"),
     
-    @SerializedName("ERROR")
+    @SerializedName("error")
     ERROR("error");
 
     private String value;
@@ -289,14 +289,14 @@ public class VDU {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    VDU VDU = (VDU) o;
+    VDU VDU = (io.elastest.epm.client.model.VDU) o;
     return Objects.equals(this.computeId, VDU.computeId) &&
         Objects.equals(this.events, VDU.events) &&
         Objects.equals(this.id, VDU.id) &&
@@ -319,7 +319,7 @@ public class VDU {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class VDU {\n");
-    
+
     sb.append("    computeId: ").append(toIndentedString(computeId)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
@@ -338,7 +338,7 @@ public class VDU {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -13,14 +13,15 @@
 
 package io.elastest.epm.client.model;
 
-import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
+
+import java.util.Objects;
 
 /**
  * FileDownloadBody
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-21T16:11:00.478+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-08-23T16:53:27.371+02:00")
 public class FileDownloadBody {
   @SerializedName("path")
   private String path = null;
@@ -45,7 +46,7 @@ public class FileDownloadBody {
 
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -66,7 +67,7 @@ public class FileDownloadBody {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class FileDownloadBody {\n");
-    
+
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -76,7 +77,7 @@ public class FileDownloadBody {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }
