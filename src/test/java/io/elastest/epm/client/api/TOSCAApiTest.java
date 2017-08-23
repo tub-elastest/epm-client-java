@@ -37,7 +37,7 @@ public class TOSCAApiTest {
      */
     @Test
     public void deployToscaTemplateTest() throws ApiException {
-        ResourceGroup body = null;
+        String body = null;
         ResourceGroup response = api.deployToscaTemplate(body);
 
         // TODO: test validations

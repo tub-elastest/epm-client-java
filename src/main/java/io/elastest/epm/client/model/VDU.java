@@ -58,28 +58,28 @@ public class VDU {
    * Gets or Sets status
    */
   public enum StatusEnum {
-    @SerializedName("initializing")
+    @SerializedName("INITIALIZING")
     INITIALIZING("initializing"),
     
-    @SerializedName("initialized")
+    @SerializedName("INITIALIZED")
     INITIALIZED("initialized"),
     
-    @SerializedName("deploying")
+    @SerializedName("DEPLOYING")
     DEPLOYING("deploying"),
     
-    @SerializedName("deployed")
+    @SerializedName("DEPLOYED")
     DEPLOYED("deployed"),
     
-    @SerializedName("running")
+    @SerializedName("RUNNING")
     RUNNING("running"),
     
-    @SerializedName("undeploying")
+    @SerializedName("UNDEPLOYING")
     UNDEPLOYING("undeploying"),
     
-    @SerializedName("undeployed")
+    @SerializedName("UNDEPLOYED")
     UNDEPLOYED("undeployed"),
     
-    @SerializedName("error")
+    @SerializedName("ERROR")
     ERROR("error");
 
     private String value;

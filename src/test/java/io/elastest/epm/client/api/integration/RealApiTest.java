@@ -57,6 +57,7 @@ public class RealApiTest {
      *          if the Api call fails
      */
     @Test
+    @Ignore
     public void listAll() throws ApiException {
         listResourceGroups();
         listPoPs();
@@ -66,6 +67,7 @@ public class RealApiTest {
 
 
     @Test
+    @Ignore
     public void completeResourceGroupTest() throws ApiException {
         ResourceGroup resourceGroup = deployResourceGroup();
         listResourceGroups();
@@ -74,22 +76,23 @@ public class RealApiTest {
     }
 
     @Test
+    @Ignore
     public void completePopNetworkVduTest() throws ApiException, FileNotFoundException {
         PoP pop = createPop();
         pop = popApi.registerPoP(pop);
         listPoPs();
         Network network = createNetwork(pop.getName());
-//        network = networkApi.createNetwork(network);
+        network = networkApi.createNetwork(network);
         listNetworks();
-//        VDU vdu = vduApi.deployVdu(createVdu(pop.getName(), network.getName()));
+        VDU vdu = vduApi.deployVdu(createVdu(pop.getName(), network.getName()));
 
-//        log.info("Status: " + vdu.getStatus());
-//        log.info("IP address: " + vdu.getIp());
+        log.info("Status: " + vdu.getStatus());
+        log.info("IP address: " + vdu.getIp());
 
         listVdus();
 
-//        String vduId = vdu.getId();
-        String vduId = "a21fef65-31f6-4782-9b43-7ec35b99de46";
+        String vduId = vdu.getId();
+//        String vduId = "a21fef65-31f6-4782-9b43-7ec35b99de46";
 
         runtimeApi.startInstance(vduId);
 
@@ -120,16 +123,16 @@ public class RealApiTest {
 
         runtimeApi.startInstance(vduId);
 
-        VDU vdu = vduApi.getVduById(vduId);
+        vdu = vduApi.getVduById(vduId);
 
         log.info("VDU: " + vdu);
         log.info("VDU status: " + vdu.getStatus());
 
-//        vduApi.deleteVdu(vdu.getId());
+        vduApi.deleteVdu(vdu.getId());
 
-//        networkApi.deleteNetwork(network.getId());
+        networkApi.deleteNetwork(network.getId());
 
-//        popApi.unregisterPoP(pop.getId());
+        popApi.unregisterPoP(pop.getId());
     }
 
     private String executeCommand(String vduId, String command) throws ApiException {
@@ -140,6 +143,7 @@ public class RealApiTest {
     }
 
     @Test
+    @Ignore
     public void cleanResourceGroupTest() throws ApiException {
         List<ResourceGroup> resourceGroupList = listResourceGroups();
         for (ResourceGroup resourceGroup : resourceGroupList) {
