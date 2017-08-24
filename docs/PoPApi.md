@@ -22,8 +22,8 @@ Returns all PoPs with all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.PoPApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
 
 
 PoPApi apiInstance = new PoPApi();
@@ -63,8 +63,8 @@ Returns the PoP with the given ID. Returns all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.PoPApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
 
 
 PoPApi apiInstance = new PoPApi();
@@ -108,8 +108,8 @@ Registers a new Point-of-Presence represented by a PoP
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.PoPApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
 
 
 PoPApi apiInstance = new PoPApi();
@@ -153,8 +153,8 @@ Unregisters the PoP that matches with a given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.PoPApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
 
 
 PoPApi apiInstance = new PoPApi();
@@ -198,8 +198,8 @@ Updates an already registered PoP.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.PoPApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
 
 
 PoPApi apiInstance = new PoPApi();

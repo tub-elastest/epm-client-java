@@ -79,10 +79,10 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
-import io.swagger.client.*;
-import io.swagger.client.auth.*;
-import io.swagger.client.model.*;
-import io.swagger.client.api.NetworkApi;
+import io.elastest.epm.client.*;
+import io.elastest.epm.client.auth.*;
+import io.elastest.epm.client.model.*;
+import io.elastest.epm.client.api.NetworkApi;
 
 import java.io.File;
 import java.util.*;

@@ -22,8 +22,8 @@ Terminates the VDU that matches with a given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.VDUApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.VDUApi;
 
 
 VDUApi apiInstance = new VDUApi();
@@ -67,8 +67,8 @@ Allocates resources defined as a VDU in the cloud to be deployed in the target c
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.VDUApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.VDUApi;
 
 
 VDUApi apiInstance = new VDUApi();
@@ -112,8 +112,8 @@ Returns all VDUs with all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.VDUApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.VDUApi;
 
 
 VDUApi apiInstance = new VDUApi();
@@ -153,8 +153,8 @@ Returns the VDU with the given ID. Returns all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.VDUApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.VDUApi;
 
 
 VDUApi apiInstance = new VDUApi();
@@ -198,8 +198,8 @@ Updates an already deployed VDU.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.VDUApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.VDUApi;
 
 
 VDUApi apiInstance = new VDUApi();

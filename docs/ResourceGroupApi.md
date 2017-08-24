@@ -22,8 +22,8 @@ Creates a new Resource Group and allocates the defined resources in the defined 
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.ResourceGroupApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.ResourceGroupApi;
 
 
 ResourceGroupApi apiInstance = new ResourceGroupApi();
@@ -67,8 +67,8 @@ Deletes the Resource Group that matches with a given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.ResourceGroupApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.ResourceGroupApi;
 
 
 ResourceGroupApi apiInstance = new ResourceGroupApi();
@@ -112,8 +112,8 @@ Returns all Resource Groups with all details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.ResourceGroupApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.ResourceGroupApi;
 
 
 ResourceGroupApi apiInstance = new ResourceGroupApi();
@@ -153,8 +153,8 @@ Returns the Resource Group with the given ID. Returns all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.ResourceGroupApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.ResourceGroupApi;
 
 
 ResourceGroupApi apiInstance = new ResourceGroupApi();
@@ -198,8 +198,8 @@ Updates an existing ResourceGroup.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.ResourceGroupApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.ResourceGroupApi;
 
 
 ResourceGroupApi apiInstance = new ResourceGroupApi();

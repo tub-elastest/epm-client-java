@@ -18,8 +18,8 @@ The TOSCA template defines VDUs, Networks and the PoPs where to allocate the vir
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.TOSCAApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.TOSCAApi;
 
 
 TOSCAApi apiInstance = new TOSCAApi();

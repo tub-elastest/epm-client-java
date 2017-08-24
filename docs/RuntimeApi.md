@@ -23,8 +23,8 @@ Download a file with the given filepath from the given VDU.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();
@@ -70,8 +70,8 @@ Executes the given command on the VDU with the given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();
@@ -117,8 +117,8 @@ Starts the VDU with the given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();
@@ -161,8 +161,8 @@ Stops the VDU with the given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();
@@ -205,8 +205,8 @@ Uploads a given file to the given filepath to the given VDU.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();
@@ -253,8 +253,8 @@ Uploads a given file from the host path to the given file path to the given VDU.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.RuntimeApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.RuntimeApi;
 
 
 RuntimeApi apiInstance = new RuntimeApi();

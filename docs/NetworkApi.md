@@ -22,8 +22,8 @@ Creates a new network in the target cloud environment with the given CIDR.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.NetworkApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.NetworkApi;
 
 
 NetworkApi apiInstance = new NetworkApi();
@@ -67,8 +67,8 @@ Deletes the network that matches with a given ID.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.NetworkApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.NetworkApi;
 
 
 NetworkApi apiInstance = new NetworkApi();
@@ -112,8 +112,8 @@ Returns all networks with all details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.NetworkApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.NetworkApi;
 
 
 NetworkApi apiInstance = new NetworkApi();
@@ -153,8 +153,8 @@ Returns the network with the given ID. Returns all its details.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.NetworkApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.NetworkApi;
 
 
 NetworkApi apiInstance = new NetworkApi();
@@ -198,8 +198,8 @@ Updates an existing Network.
 ### Example
 ```java
 // Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.NetworkApi;
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.NetworkApi;
 
 
 NetworkApi apiInstance = new NetworkApi();
