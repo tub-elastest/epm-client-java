@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>io.elastest</groupId>
     <artifactId>epm.client</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/swagger-java-client-1.0.0.jar
+* target/epm.client-0.1.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -94,7 +94,7 @@ public class NetworkApiExample {
         NetworkApi apiInstance = new NetworkApi();
         Network body = new Network(); // Network | Defintion of a Network which has to be created on a certain PoP
         try {
-            Network result = apiInstance.createNetworkUsingPOST(body);
+            Network result = apiInstance.createNetwork(body);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling NetworkApi#createNetworkUsingPOST");

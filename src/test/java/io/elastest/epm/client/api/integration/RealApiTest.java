@@ -13,20 +13,17 @@
 
 package io.elastest.epm.client.api.integration;
 
-import io.elastest.epm.client.ApiCallback;
 import io.elastest.epm.client.ApiClient;
 import io.elastest.epm.client.ApiException;
 import io.elastest.epm.client.api.*;
 import io.elastest.epm.client.model.*;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
-import sun.misc.Resource;
-import sun.nio.ch.Net;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,15 +44,18 @@ public class RealApiTest {
     private final TOSCAApi toscaApi = new TOSCAApi();
     private final RuntimeApi runtimeApi = new RuntimeApi();
 
+    @Before
+    public void init() {
+        ApiClient apiClient = new ApiClient();
+        apiClient.setBasePath("http://192.168.161.127:8180/v1");
+        networkApi.setApiClient(apiClient);
+        vduApi.setApiClient(apiClient);
+        popApi.setApiClient(apiClient);
+        resourceGroupApi.setApiClient(apiClient);
+        runtimeApi.setApiClient(apiClient);
+        log.info("Starting ResourceGroupManagementTest");
+    }
 
-    /**
-     * Tests ResourceGroup API.
-     *
-     * Registers a new PoP, creates a Network and allocates virtualized resources. Once done, runtime information will be requeted before deleting/terminating everything again.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
     @Test
     @Ignore
     public void listAll() throws ApiException {

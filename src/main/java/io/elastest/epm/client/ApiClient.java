@@ -77,16 +77,11 @@ import io.elastest.epm.client.auth.Authentication;
 import io.elastest.epm.client.auth.HttpBasicAuth;
 import io.elastest.epm.client.auth.ApiKeyAuth;
 import io.elastest.epm.client.auth.OAuth;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 
 public class ApiClient {
     public static final double JAVA_VERSION;
     public static final boolean IS_ANDROID;
     public static final int ANDROID_SDK_VERSION;
-
-    private Logger log = LoggerFactory.getLogger(this.getClass());
 
     static {
         JAVA_VERSION = Double.parseDouble(System.getProperty("java.specification.version"));
@@ -1046,11 +1041,9 @@ public class ApiClient {
                 try {
                     respBody = response.body().string();
                 } catch (IOException e) {
-                    log.error(response.message(), respBody);
                     throw new ApiException(response.message(), e, response.code(), response.headers().toMultimap());
                 }
             }
-            log.error(response.message(), respBody);
             throw new ApiException(response.message(), response.code(), response.headers().toMultimap(), respBody);
         }
     }
