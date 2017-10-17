@@ -25,6 +25,7 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -42,17 +43,19 @@ public class RealApiTest {
     private final PoPApi popApi = new PoPApi();
     private final ResourceGroupApi resourceGroupApi = new ResourceGroupApi();
     private final TOSCAApi toscaApi = new TOSCAApi();
+    private final PackageApi packageApi = new PackageApi();
     private final RuntimeApi runtimeApi = new RuntimeApi();
 
     @Before
     public void init() {
         ApiClient apiClient = new ApiClient();
-        apiClient.setBasePath("http://192.168.161.127:8180/v1");
+        apiClient.setBasePath("http://localhost:8180/v1");
         networkApi.setApiClient(apiClient);
         vduApi.setApiClient(apiClient);
         popApi.setApiClient(apiClient);
         resourceGroupApi.setApiClient(apiClient);
         runtimeApi.setApiClient(apiClient);
+        packageApi.setApiClient(apiClient);
         log.info("Starting ResourceGroupManagementTest");
     }
 
@@ -150,6 +153,15 @@ public class RealApiTest {
             log.info("Deleteing Resource Group: " + resourceGroup);
             resourceGroupApi.deleteResourceGroup(resourceGroup.getId());
         }
+    }
+
+    @Test
+    @Ignore
+    public void sendAndDeletePackage() throws ApiException {
+        File testPackage = new File(getClass().getClassLoader().getResource("compose-package.tar").getPath());
+        ResourceGroup resourceGroup = packageApi.receivePackage(testPackage);
+        log.info(String.valueOf(resourceGroup));
+        packageApi.deletePackage(resourceGroup.getId());
     }
 
     private List<ResourceGroup> listResourceGroups() throws ApiException {

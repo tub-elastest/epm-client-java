@@ -116,16 +116,13 @@ Class | Method | HTTP request | Description
 *NetworkApi* | [**getAllNetworks**](docs/NetworkApi.md#getAllNetworks) | **GET** /network | Returns all existing networks.
 *NetworkApi* | [**getNetworkById**](docs/NetworkApi.md#getNetworkById) | **GET** /network/{id} | Returns a network.
 *NetworkApi* | [**updateNetwork**](docs/NetworkApi.md#updateNetwork) | **PATCH** /network/{id} | Updates a Network.
+*PackageApi* | [**deletePackage**](docs/PackageApi.md#deletePackage) | **DELETE** /packages/{id} | Deletes a package.
+*PackageApi* | [**receivePackage**](docs/PackageApi.md#receivePackage) | **POST** /packages | Receives a package.
 *PoPApi* | [**getAllPoPs**](docs/PoPApi.md#getAllPoPs) | **GET** /pop | Returns all PoPs.
 *PoPApi* | [**getPoPById**](docs/PoPApi.md#getPoPById) | **GET** /pop/{id} | Returns a PoP.
 *PoPApi* | [**registerPoP**](docs/PoPApi.md#registerPoP) | **POST** /pop | Registers a new PoP
 *PoPApi* | [**unregisterPoP**](docs/PoPApi.md#unregisterPoP) | **DELETE** /pop/{id} | Unregisters a PoP.
 *PoPApi* | [**updatePoP**](docs/PoPApi.md#updatePoP) | **PATCH** /pop/{id} | Updates a PoP.
-*VDUApi* | [**deleteVdu**](docs/VDUApi.md#deleteVdu) | **DELETE** /vdu/{id} | Terminates a VDU.
-*VDUApi* | [**deployVdu**](docs/VDUApi.md#deployVdu) | **POST** /vdu | Allocates resources in the target cloud.
-*VDUApi* | [**getAllVdus**](docs/VDUApi.md#getAllVdus) | **GET** /vdu | Returns all VDUs.
-*VDUApi* | [**getVduById**](docs/VDUApi.md#getVduById) | **GET** /vdu/{id} | Returns a VDU.
-*VDUApi* | [**updateVdu**](docs/VDUApi.md#updateVdu) | **PATCH** /vdu/{id} | Updates a VDU.
 *ResourceGroupApi* | [**createResourceGroup**](docs/ResourceGroupApi.md#createResourceGroup) | **POST** /resourceGroup | Creates a new Resource Group.
 *ResourceGroupApi* | [**deleteResourceGroup**](docs/ResourceGroupApi.md#deleteResourceGroup) | **DELETE** /resourceGroup/{id} | Deletes a Resource Group.
 *ResourceGroupApi* | [**getAllResourceGroups**](docs/ResourceGroupApi.md#getAllResourceGroups) | **GET** /resourceGroup | Returns all Resource Groups.
@@ -138,6 +135,11 @@ Class | Method | HTTP request | Description
 *RuntimeApi* | [**uploadFileToInstanceByFile**](docs/RuntimeApi.md#uploadFileToInstanceByFile) | **POST** /runtime/{id}/file | Uploads a file to a VDU.
 *RuntimeApi* | [**uploadFileToInstanceByPath**](docs/RuntimeApi.md#uploadFileToInstanceByPath) | **POST** /runtime/{id}/path | Uploads a file to a VDU.
 *TOSCAApi* | [**deployToscaTemplate**](docs/TOSCAApi.md#deployToscaTemplate) | **POST** /tosca | Deploys a Tosca template.
+*VDUApi* | [**deleteVdu**](docs/VDUApi.md#deleteVdu) | **DELETE** /vdu/{id} | Terminates a VDU.
+*VDUApi* | [**deployVdu**](docs/VDUApi.md#deployVdu) | **POST** /vdu | Allocates resources in the target cloud.
+*VDUApi* | [**getAllVdus**](docs/VDUApi.md#getAllVdus) | **GET** /vdu | Returns all VDUs.
+*VDUApi* | [**getVduById**](docs/VDUApi.md#getVduById) | **GET** /vdu/{id} | Returns a VDU.
+*VDUApi* | [**updateVdu**](docs/VDUApi.md#updateVdu) | **PATCH** /vdu/{id} | Updates a VDU.
 
 
 ## Documentation for Models
