@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**getAllPoPs**](PoPApi.md#getAllPoPs) | **GET** /pop | Returns all PoPs.
 [**getPoPById**](PoPApi.md#getPoPById) | **GET** /pop/{id} | Returns a PoP.
 [**registerPoP**](PoPApi.md#registerPoP) | **POST** /pop | Registers a new PoP
+[**registerWorker**](PoPApi.md#registerWorker) | **POST** /pop/{id} | Starts a worker
 [**unregisterPoP**](PoPApi.md#unregisterPoP) | **DELETE** /pop/{id} | Unregisters a PoP.
 [**updatePoP**](PoPApi.md#updatePoP) | **PATCH** /pop/{id} | Updates a PoP.
 
@@ -140,6 +141,53 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="registerWorker"></a>
+# **registerWorker**
+> PoP registerWorker(id, privateKey)
+
+Starts a worker
+
+Provides the private key for executing the commands needed for starting the adapters inside a worker
+
+### Example
+```java
+// Import classes:
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.PoPApi;
+
+
+PoPApi apiInstance = new PoPApi();
+String id = "id_example"; // String | ID of PoP
+File privateKey = new File("/path/to/file.txt"); // File | The private key for registering the adapters inside the worker
+try {
+    PoP result = apiInstance.registerWorker(id, privateKey);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling PoPApi#registerWorker");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **String**| ID of PoP |
+ **privateKey** | **File**| The private key for registering the adapters inside the worker |
+
+### Return type
+
+[**PoP**](PoP.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
  - **Accept**: application/json
 
 <a name="unregisterPoP"></a>
