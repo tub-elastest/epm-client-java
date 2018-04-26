@@ -30,7 +30,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>io.elastest</groupId>
     <artifactId>epm.client</artifactId>
-    <version>0.8.0</version>
+    <version>0.9.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -40,7 +40,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.elastest:epm.client:0.8.0"
+compile "io.elastest:epm.client:0.9.0"
 ```
 
 ### Others
@@ -51,7 +51,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/epm.client-0.8.0.jar
+* target/epm.client-0.9.0.jar
 * target/lib/*.jar
 
 ## Getting Started
