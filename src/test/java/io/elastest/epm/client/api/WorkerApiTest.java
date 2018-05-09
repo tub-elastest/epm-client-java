@@ -76,7 +76,7 @@ public class WorkerApiTest {
     public void installAdapterTest() throws ApiException {
         String id = null;
         String type = null;
-        String response = api.installAdapter("7ba6b43d-3e1e-4605-b3e9-cbe831463811", "docker");
+        String response = api.installAdapter("c3b14774-5376-4d70-9c2f-3e94ac78e13d", "docker");
 
         // TODO: test validations
     }

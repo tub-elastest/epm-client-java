@@ -154,7 +154,7 @@ public class ApiClient {
     // Prevent the authentications from being modified.
     authentications = Collections.unmodifiableMap(authentications);
 
-    httpClient.setReadTimeout(60, TimeUnit.SECONDS);
+    httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
   }
 
   /**
