@@ -73,6 +73,7 @@ public class ApiClient {
   public static final boolean IS_ANDROID;
   public static final int ANDROID_SDK_VERSION;
   public static final String ET_EPM_API;
+  public static final String ET_PUBLIC_HOST;
 
   static {
     JAVA_VERSION = Double.parseDouble(System.getProperty("java.specification.version"));
@@ -99,6 +100,7 @@ public class ApiClient {
     }
     ANDROID_SDK_VERSION = sdkVersion;
     ET_EPM_API = System.getenv("ET_EPM_API");
+    ET_PUBLIC_HOST = System.getenv("ET_PUBLIC_HOST");
   }
 
   /** The datetime format to be used when <code>lenientDatetimeFormat</code> is enabled. */
@@ -158,7 +160,9 @@ public class ApiClient {
 
     httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
     
-    basePath = ET_EPM_API != null ?ET_EPM_API : basePath;
+    if (ET_PUBLIC_HOST != null) {
+        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_API.split("epm:")[1];
+    }   
   }
 
   /**
