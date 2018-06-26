@@ -72,6 +72,7 @@ public class ApiClient {
   public static final double JAVA_VERSION;
   public static final boolean IS_ANDROID;
   public static final int ANDROID_SDK_VERSION;
+  public static final String ET_EPM_API;
 
   static {
     JAVA_VERSION = Double.parseDouble(System.getProperty("java.specification.version"));
@@ -97,6 +98,7 @@ public class ApiClient {
       }
     }
     ANDROID_SDK_VERSION = sdkVersion;
+    ET_EPM_API = System.getenv("ET_EPM_API");
   }
 
   /** The datetime format to be used when <code>lenientDatetimeFormat</code> is enabled. */
@@ -155,6 +157,8 @@ public class ApiClient {
     authentications = Collections.unmodifiableMap(authentications);
 
     httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
+    
+    basePath = ET_EPM_API != null ?ET_EPM_API : basePath;
   }
 
   /**
