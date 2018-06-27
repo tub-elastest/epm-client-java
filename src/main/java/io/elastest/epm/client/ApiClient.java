@@ -1033,6 +1033,7 @@ public class ApiClient {
               response.message(), e, response.code(), response.headers().toMultimap());
         }
       }
+      logger.error(response.message() + ":" + ":" + respBody);
       throw new ApiException(
           response.message(), response.code(), response.headers().toMultimap(), respBody);
     }
