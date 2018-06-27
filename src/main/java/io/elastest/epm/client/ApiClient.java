@@ -1028,6 +1028,7 @@ public class ApiClient {
         try {
           respBody = response.body().string();
         } catch (IOException e) {
+            e.printStackTrace();            
           throw new ApiException(
               response.message(), e, response.code(), response.headers().toMultimap());
         }
