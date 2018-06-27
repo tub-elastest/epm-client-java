@@ -1117,6 +1117,7 @@ public class ApiClient {
    */
   public String buildUrl(String path, List<Pair> queryParams) {
     final StringBuilder url = new StringBuilder();
+    
     url.append(basePath).append(path);
 
     if (queryParams != null && !queryParams.isEmpty()) {
@@ -1135,6 +1136,8 @@ public class ApiClient {
         }
       }
     }
+    
+    logger.info("Api EPM URL: " + url.toString());
 
     return url.toString();
   }
