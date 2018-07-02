@@ -172,7 +172,7 @@ public class ApiClient {
     httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
     
     if (ET_PUBLIC_HOST != null) {
-        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_BINDED_PORT;
+        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_BINDED_PORT + "/v1";
         logger.info("EPM URL: " + basePath);
     }   
   }
