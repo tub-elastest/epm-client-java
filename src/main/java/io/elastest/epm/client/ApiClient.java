@@ -80,6 +80,7 @@ public class ApiClient {
   public static final int ANDROID_SDK_VERSION;
   public static final String ET_EPM_API;
   public static final String ET_PUBLIC_HOST;
+  public static final String ET_EPM_BINDED_PORT;
 
   static {
     JAVA_VERSION = Double.parseDouble(System.getProperty("java.specification.version"));
@@ -107,6 +108,7 @@ public class ApiClient {
     ANDROID_SDK_VERSION = sdkVersion;
     ET_EPM_API = System.getenv("ET_EPM_API");
     ET_PUBLIC_HOST = System.getenv("ET_PUBLIC_HOST");
+    ET_EPM_BINDED_PORT = System.getenv("ET_EPM_BINDED_PORT");
   }
   
   private static final Logger logger = LoggerFactory
@@ -170,7 +172,7 @@ public class ApiClient {
     httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
     
     if (ET_PUBLIC_HOST != null) {
-        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_API.split("epm:")[1].split("/")[0];
+        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_BINDED_PORT;
         logger.info("EPM URL: " + basePath);
     }   
   }
