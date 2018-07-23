@@ -12,23 +12,6 @@
 
 package io.elastest.epm.client;
 
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.MultipartBuilder;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.internal.http.HttpMethod;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor.Level;
-import io.elastest.epm.client.auth.ApiKeyAuth;
-import io.elastest.epm.client.auth.Authentication;
-import io.elastest.epm.client.auth.HttpBasicAuth;
-import io.elastest.epm.client.auth.OAuth;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,6 +41,7 @@ import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.SSLContext;
@@ -65,6 +49,28 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.MultipartBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+import com.squareup.okhttp.internal.http.HttpMethod;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+import com.squareup.okhttp.logging.HttpLoggingInterceptor.Level;
+
+import io.elastest.epm.client.auth.ApiKeyAuth;
+import io.elastest.epm.client.auth.Authentication;
+import io.elastest.epm.client.auth.HttpBasicAuth;
+import io.elastest.epm.client.auth.OAuth;
 import okio.BufferedSink;
 import okio.Okio;
 
@@ -72,6 +78,9 @@ public class ApiClient {
   public static final double JAVA_VERSION;
   public static final boolean IS_ANDROID;
   public static final int ANDROID_SDK_VERSION;
+  public static final String ET_EPM_API;
+  public static final String ET_PUBLIC_HOST;
+  public static final String ET_EPM_BINDED_PORT;
 
   static {
     JAVA_VERSION = Double.parseDouble(System.getProperty("java.specification.version"));
@@ -97,7 +106,13 @@ public class ApiClient {
       }
     }
     ANDROID_SDK_VERSION = sdkVersion;
+    ET_EPM_API = System.getenv("ET_EPM_API");
+    ET_PUBLIC_HOST = System.getenv("ET_PUBLIC_HOST");
+    ET_EPM_BINDED_PORT = System.getenv("ET_EPM_BINDED_PORT");
   }
+  
+  private static final Logger logger = LoggerFactory
+          .getLogger(ApiClient.class);
 
   /** The datetime format to be used when <code>lenientDatetimeFormat</code> is enabled. */
   public static final String LENIENT_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
@@ -155,6 +170,11 @@ public class ApiClient {
     authentications = Collections.unmodifiableMap(authentications);
 
     httpClient.setReadTimeout(3600, TimeUnit.SECONDS);
+    
+    if (ET_PUBLIC_HOST != null) {
+        basePath = "http://" + ET_PUBLIC_HOST + ":" + ET_EPM_BINDED_PORT + "/v1";
+        logger.info("EPM URL: " + basePath);
+    }   
   }
 
   /**
@@ -1010,10 +1030,12 @@ public class ApiClient {
         try {
           respBody = response.body().string();
         } catch (IOException e) {
+            e.printStackTrace();            
           throw new ApiException(
               response.message(), e, response.code(), response.headers().toMultimap());
         }
       }
+      logger.error(response.message() + ":" + ":" + respBody);
       throw new ApiException(
           response.message(), response.code(), response.headers().toMultimap(), respBody);
     }
@@ -1097,6 +1119,7 @@ public class ApiClient {
    */
   public String buildUrl(String path, List<Pair> queryParams) {
     final StringBuilder url = new StringBuilder();
+    
     url.append(basePath).append(path);
 
     if (queryParams != null && !queryParams.isEmpty()) {
@@ -1115,6 +1138,8 @@ public class ApiClient {
         }
       }
     }
+    
+    logger.info("Api EPM URL: " + url.toString());
 
     return url.toString();
   }
