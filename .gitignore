@@ -45,4 +45,5 @@ test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
 
-*/key.json
+*key.json
+*.tar

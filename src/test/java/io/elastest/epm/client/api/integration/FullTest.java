@@ -7,6 +7,7 @@ import io.elastest.epm.client.JSON;
 import io.elastest.epm.client.api.*;
 import io.elastest.epm.client.model.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import sun.misc.IOUtils;
 
@@ -36,6 +37,7 @@ public class FullTest {
     }
 
     @Test
+    @Ignore
     public void fullTestCompose() throws FileNotFoundException, ApiException, InterruptedException {
 
         // Check if all needed adapters are already registered
@@ -150,5 +152,36 @@ public class FullTest {
             }
         }
         return poP;
+    }
+
+    @Test
+    @Ignore
+    public void test() throws InterruptedException, ApiException, FileNotFoundException {
+
+        File w = new File("src/test/resources/key.json");
+        InputStream is = new FileInputStream(w);
+        Scanner s = new Scanner(is).useDelimiter("\\A");
+        String result = s.hasNext() ? s.next() : "";
+        result = result.replace("  ", "");
+        Key key = json.deserialize(result, new TypeToken<Key>(){}.getType());
+
+        w = new File("src/test/resources/worker.json");
+        is = new FileInputStream(w);
+        s = new Scanner(is).useDelimiter("\\A");
+        result = s.hasNext() ? s.next() : "";
+        Worker worker = json.deserialize(result, new TypeToken<Worker>(){}.getType());
+        s.close();
+
+        // Register Key
+        key = keyApi.addKey(key);
+
+        TimeUnit.SECONDS.sleep(15);
+        // Register Worker
+        try {
+            Worker registeredWorker = workerApi.registerWorker(worker);
+
+        } finally {
+            keyApi.deleteKey(key.getId());
+        }
     }
 }

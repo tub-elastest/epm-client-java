@@ -28,6 +28,7 @@ public class PackageTest {
     }
 
     @Test
+    @Ignore
     public void sendAndDeletePackage() throws ApiException {
         File testPackage = new File("src/test/resources/compose-package.tar");
         ResourceGroup resourceGroup = packageApi.receivePackage(testPackage);
