@@ -13,6 +13,7 @@ import sun.misc.IOUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -41,14 +42,25 @@ public class FullTest {
     public void fullTestCompose() throws FileNotFoundException, ApiException, InterruptedException {
 
         // Check if all needed adapters are already registered
+        assert adapterForType("ansible") != null;
 
-        boolean dockerFound = false;
-        List<Adapter> adapters = adapterApi.getAllAdapters();
-        for(Adapter adapter : adapters) {
-            if(adapter.getType().equals("docker")) dockerFound = true;
+        PoP pop = new PoP();
+        pop.setName("tub-os");
+        pop.setInterfaceEndpoint("<REPLACE>");
+        pop.addInterfaceInfoItem(new KeyValuePair().key("auth_url").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("password").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("project_name").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("username").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("type").value("<REPLACE>"));
+        PoP poPR = null;
+        try {
+            poPR = poPApi.registerPoP(pop);
+        } catch (ApiException e) {
+            System.err
+                    .println("Exception when calling PoPApi#registerPoP");
+            e.printStackTrace();
         }
-        assert popForType("ansible") != null;
-        assert dockerFound;
+
 
         // Launch Ansible Package
 
@@ -90,7 +102,7 @@ public class FullTest {
         int tries = 5;
         while (!composeFound && tries > 0){
             TimeUnit.SECONDS.sleep(2);
-            adapters = adapterApi.getAllAdapters();
+            List<Adapter> adapters = adapterApi.getAllAdapters();
             for(Adapter adapter : adapters) {
                 if(adapter.getType().equals("docker-compose")) composeFound = true;
             }
@@ -109,49 +121,22 @@ public class FullTest {
         String r = runtimeApi.executeOnInstance(resourceGroup.getVdus().get(0).getId(), commandExecutionBody);
         System.out.print(r);
 
-        /* DOCKER TEST
-         */
-
-
-        // Launch Package
-        boolean dockerPop = false;
-        tries = 5;
-        while (!dockerPop && tries > 0){
-            TimeUnit.SECONDS.sleep(2);
-            if(popForType("docker") != null) dockerPop = true;
-            tries--;
-        }
-        assert dockerPop;
-        File dockerPackage = new File("src/test/resources/docker-package.tar");
-        ResourceGroup dockerResourceGroup = packageApi.receivePackage(dockerPackage);
-
-        assert dockerResourceGroup.getVdus().size() > 0;
-        // Runtime
-        r = runtimeApi.executeOnInstance(dockerResourceGroup.getVdus().get(0).getId(), commandExecutionBody);
-        System.out.print(r);
-
         /*
         Clean
          */
-        packageApi.deletePackage(dockerResourceGroup.getId());
         packageApi.deletePackage(resourceGroup.getId());
         workerApi.deleteWorker(registeredWorker.getId());
         keyApi.deleteKey(key.getId());
         packageApi.deletePackage(ansibleRG.getId());
     }
 
-    private PoP popForType(String type) throws ApiException {
-        PoP poP = null;
-        List<PoP> pops = poPApi.getAllPoPs();
-        for (PoP pop : pops) {
-            for (KeyValuePair kvp : pop.getInterfaceInfo()) {
-                if (kvp.getKey().equals("type") && kvp.getValue().equals(type)) {
-                    poP = pop;
-                    break;
-                }
-            }
+    private Adapter adapterForType(String type) throws ApiException {
+        Adapter adapter = null;
+        List<Adapter> pops = adapterApi.getAllAdapters();
+        for (Adapter a : pops) {
+            if (a.getType().equals("ansible")) adapter = a;
         }
-        return poP;
+        return adapter;
     }
 
     @Test
