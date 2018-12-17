@@ -25,10 +25,6 @@
 
 package io.elastest.epm.client.api;
 
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
 import io.elastest.epm.client.ApiCallback;
 import io.elastest.epm.client.ApiClient;
 import io.elastest.epm.client.ApiException;
@@ -37,7 +33,13 @@ import io.elastest.epm.client.Configuration;
 import io.elastest.epm.client.Pair;
 import io.elastest.epm.client.ProgressRequestBody;
 import io.elastest.epm.client.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
 import io.elastest.epm.client.model.Cluster;
+import io.elastest.epm.client.model.ClusterFromResourceGroup;
+
+import java.io.IOException;
+
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -64,6 +66,228 @@ public class ClusterApi {
         this.apiClient = apiClient;
     }
 
+    /* Build call for addWorker */
+    private com.squareup.okhttp.Call addWorkerCall(String id, String machineId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling addWorker(Async)");
+        }
+        
+        // verify the required parameter 'machineId' is set
+        if (machineId == null) {
+            throw new ApiException("Missing the required parameter 'machineId' when calling addWorker(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/cluster/{id}/add/{machineId}".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()))
+        .replaceAll("\\{" + "machineId" + "\\}", apiClient.escapeString(machineId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Adds a worker to the cluster.
+     * 
+     * @param id ID of Cluster (required)
+     * @param machineId The ID of either a Worker or a VDU, which will be added to the cluster (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String addWorker(String id, String machineId) throws ApiException {
+        ApiResponse<String> resp = addWorkerWithHttpInfo(id, machineId);
+        return resp.getData();
+    }
+
+    /**
+     * Adds a worker to the cluster.
+     * 
+     * @param id ID of Cluster (required)
+     * @param machineId The ID of either a Worker or a VDU, which will be added to the cluster (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> addWorkerWithHttpInfo(String id, String machineId) throws ApiException {
+        com.squareup.okhttp.Call call = addWorkerCall(id, machineId, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Adds a worker to the cluster. (asynchronously)
+     * 
+     * @param id ID of Cluster (required)
+     * @param machineId The ID of either a Worker or a VDU, which will be added to the cluster (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call addWorkerAsync(String id, String machineId, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = addWorkerCall(id, machineId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for createCluster */
+    private com.squareup.okhttp.Call createClusterCall(ClusterFromResourceGroup clusterFromResourceGroup, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = clusterFromResourceGroup;
+        
+        // verify the required parameter 'clusterFromResourceGroup' is set
+        if (clusterFromResourceGroup == null) {
+            throw new ApiException("Missing the required parameter 'clusterFromResourceGroup' when calling createCluster(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/cluster/create".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Creates a new cluster.
+     * Receives an Identifier for a ResourceGroup and an array of types to setup the Resource Group as a cluster.
+     * @param clusterFromResourceGroup Body to create Cluster from ResourceGroup (required)
+     * @return Cluster
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Cluster createCluster(ClusterFromResourceGroup clusterFromResourceGroup) throws ApiException {
+        ApiResponse<Cluster> resp = createClusterWithHttpInfo(clusterFromResourceGroup);
+        return resp.getData();
+    }
+
+    /**
+     * Creates a new cluster.
+     * Receives an Identifier for a ResourceGroup and an array of types to setup the Resource Group as a cluster.
+     * @param clusterFromResourceGroup Body to create Cluster from ResourceGroup (required)
+     * @return ApiResponse&lt;Cluster&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Cluster> createClusterWithHttpInfo(ClusterFromResourceGroup clusterFromResourceGroup) throws ApiException {
+        com.squareup.okhttp.Call call = createClusterCall(clusterFromResourceGroup, null, null);
+        Type localVarReturnType = new TypeToken<Cluster>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Creates a new cluster. (asynchronously)
+     * Receives an Identifier for a ResourceGroup and an array of types to setup the Resource Group as a cluster.
+     * @param clusterFromResourceGroup Body to create Cluster from ResourceGroup (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call createClusterAsync(ClusterFromResourceGroup clusterFromResourceGroup, final ApiCallback<Cluster> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = createClusterCall(clusterFromResourceGroup, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Cluster>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /* Build call for deleteCluster */
     private com.squareup.okhttp.Call deleteClusterCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
