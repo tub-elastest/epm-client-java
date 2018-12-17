@@ -4,17 +4,63 @@ All URIs are relative to *https://localhost:8180/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteWorker**](WorkerApi.md#deleteWorker) | **DELETE** /workers/{id} | Deletes a Resource Group.
+[**createWorker**](WorkerApi.md#createWorker) | **POST** /workers/create | Creates a new worker.
+[**deleteWorker**](WorkerApi.md#deleteWorker) | **DELETE** /workers/{id} | Deletes a Worker.
 [**getAllWorkers**](WorkerApi.md#getAllWorkers) | **GET** /workers | Returns all registered workers
 [**installAdapter**](WorkerApi.md#installAdapter) | **GET** /workers/{id}/{type} | Sets up the specified worker to install the specified type of adapter.
 [**registerWorker**](WorkerApi.md#registerWorker) | **POST** /workers | Registers the worker and saves the information.
 
 
+<a name="createWorker"></a>
+# **createWorker**
+> Worker createWorker(workerFromVDU)
+
+Creates a new worker.
+
+Receives a package that can be used for creating a new worker.
+
+### Example
+```java
+// Import classes:
+//import io.elastest.epm.client.ApiException;
+//import io.elastest.epm.client.api.WorkerApi;
+
+
+WorkerApi apiInstance = new WorkerApi();
+WorkerFromVDU workerFromVDU = new WorkerFromVDU(); // WorkerFromVDU | Body to create Worker from VDU
+try {
+    Worker result = apiInstance.createWorker(workerFromVDU);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling WorkerApi#createWorker");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workerFromVDU** | [**WorkerFromVDU**](WorkerFromVDU.md)| Body to create Worker from VDU |
+
+### Return type
+
+[**Worker**](Worker.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
 <a name="deleteWorker"></a>
 # **deleteWorker**
 > String deleteWorker(id)
 
-Deletes a Resource Group.
+Deletes a Worker.
 
 Deletes the Worker that matches with a given ID.
 
@@ -53,7 +99,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: *_/_*
 
 <a name="getAllWorkers"></a>
 # **getAllWorkers**
