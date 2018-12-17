@@ -25,6 +25,10 @@
 
 package io.elastest.epm.client.api;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
 import io.elastest.epm.client.ApiCallback;
 import io.elastest.epm.client.ApiClient;
 import io.elastest.epm.client.ApiException;
@@ -33,11 +37,7 @@ import io.elastest.epm.client.Configuration;
 import io.elastest.epm.client.Pair;
 import io.elastest.epm.client.ProgressRequestBody;
 import io.elastest.epm.client.ProgressResponseBody;
-
-import com.google.gson.reflect.TypeToken;
-import io.elastest.epm.client.model.Worker;
-
-import java.io.IOException;
+import io.elastest.epm.client.model.Cluster;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -45,14 +45,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WorkerApi {
+public class ClusterApi {
     private ApiClient apiClient;
 
-    public WorkerApi() {
+    public ClusterApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public WorkerApi(ApiClient apiClient) {
+    public ClusterApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -64,18 +64,18 @@ public class WorkerApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for deleteWorker */
-    private com.squareup.okhttp.Call deleteWorkerCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for deleteCluster */
+    private com.squareup.okhttp.Call deleteClusterCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling deleteWorker(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling deleteCluster(Async)");
         }
         
 
         // create path and map variables
-        String localVarPath = "/workers/{id}".replaceAll("\\{format\\}","json")
+        String localVarPath = "/cluster/{id}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -113,39 +113,39 @@ public class WorkerApi {
     }
 
     /**
-     * Deletes a Worker.
-     * Deletes the Worker that matches with a given ID.
-     * @param id ID of Worker (required)
+     * Deletes a Cluster.
+     * Deletes the Cluster that matches with a given ID.
+     * @param id ID of Cluster (required)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String deleteWorker(String id) throws ApiException {
-        ApiResponse<String> resp = deleteWorkerWithHttpInfo(id);
+    public String deleteCluster(String id) throws ApiException {
+        ApiResponse<String> resp = deleteClusterWithHttpInfo(id);
         return resp.getData();
     }
 
     /**
-     * Deletes a Worker.
-     * Deletes the Worker that matches with a given ID.
-     * @param id ID of Worker (required)
+     * Deletes a Cluster.
+     * Deletes the Cluster that matches with a given ID.
+     * @param id ID of Cluster (required)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> deleteWorkerWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteWorkerCall(id, null, null);
+    public ApiResponse<String> deleteClusterWithHttpInfo(String id) throws ApiException {
+        com.squareup.okhttp.Call call = deleteClusterCall(id, null, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Deletes a Worker. (asynchronously)
-     * Deletes the Worker that matches with a given ID.
-     * @param id ID of Worker (required)
+     * Deletes a Cluster. (asynchronously)
+     * Deletes the Cluster that matches with a given ID.
+     * @param id ID of Cluster (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteWorkerAsync(String id, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteClusterAsync(String id, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -166,18 +166,18 @@ public class WorkerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteWorkerCall(id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteClusterCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getAllWorkers */
-    private com.squareup.okhttp.Call getAllWorkersCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getAllClusters */
+    private com.squareup.okhttp.Call getAllClustersCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
 
         // create path and map variables
-        String localVarPath = "/workers".replaceAll("\\{format\\}","json");
+        String localVarPath = "/cluster".replaceAll("\\{format\\}","json");
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 
@@ -214,36 +214,36 @@ public class WorkerApi {
     }
 
     /**
-     * Returns all registered workers
+     * Returns all clusters
      * 
-     * @return List&lt;Worker&gt;
+     * @return List&lt;Cluster&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Worker> getAllWorkers() throws ApiException {
-        ApiResponse<List<Worker>> resp = getAllWorkersWithHttpInfo();
+    public List<Cluster> getAllClusters() throws ApiException {
+        ApiResponse<List<Cluster>> resp = getAllClustersWithHttpInfo();
         return resp.getData();
     }
 
     /**
-     * Returns all registered workers
+     * Returns all clusters
      * 
-     * @return ApiResponse&lt;List&lt;Worker&gt;&gt;
+     * @return ApiResponse&lt;List&lt;Cluster&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Worker>> getAllWorkersWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = getAllWorkersCall(null, null);
-        Type localVarReturnType = new TypeToken<List<Worker>>(){}.getType();
+    public ApiResponse<List<Cluster>> getAllClustersWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getAllClustersCall(null, null);
+        Type localVarReturnType = new TypeToken<List<Cluster>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Returns all registered workers (asynchronously)
+     * Returns all clusters (asynchronously)
      * 
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAllWorkersAsync(final ApiCallback<List<Worker>> callback) throws ApiException {
+    public com.squareup.okhttp.Call getAllClustersAsync(final ApiCallback<List<Cluster>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -264,28 +264,28 @@ public class WorkerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAllWorkersCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Worker>>(){}.getType();
+        com.squareup.okhttp.Call call = getAllClustersCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Cluster>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for installAdapter */
-    private com.squareup.okhttp.Call installAdapterCall(String id, String type, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for setUpCluster */
+    private com.squareup.okhttp.Call setUpClusterCall(String id, String type, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // verify the required parameter 'id' is set
         if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling installAdapter(Async)");
+            throw new ApiException("Missing the required parameter 'id' when calling setUpCluster(Async)");
         }
         
         // verify the required parameter 'type' is set
         if (type == null) {
-            throw new ApiException("Missing the required parameter 'type' when calling installAdapter(Async)");
+            throw new ApiException("Missing the required parameter 'type' when calling setUpCluster(Async)");
         }
         
 
         // create path and map variables
-        String localVarPath = "/workers/{id}/{type}".replaceAll("\\{format\\}","json")
+        String localVarPath = "/cluster/{id}/{type}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()))
         .replaceAll("\\{" + "type" + "\\}", apiClient.escapeString(type.toString()));
 
@@ -324,42 +324,42 @@ public class WorkerApi {
     }
 
     /**
-     * Sets up the specified worker to install the specified type of adapter.
+     * Sets up the specified cluster to install the specified technology and connected it.
      * 
-     * @param id ID of Worker (required)
-     * @param type type of adapter (required)
+     * @param id ID of Cluster (required)
+     * @param type type of technology (required)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String installAdapter(String id, String type) throws ApiException {
-        ApiResponse<String> resp = installAdapterWithHttpInfo(id, type);
+    public String setUpCluster(String id, String type) throws ApiException {
+        ApiResponse<String> resp = setUpClusterWithHttpInfo(id, type);
         return resp.getData();
     }
 
     /**
-     * Sets up the specified worker to install the specified type of adapter.
+     * Sets up the specified cluster to install the specified technology and connected it.
      * 
-     * @param id ID of Worker (required)
-     * @param type type of adapter (required)
+     * @param id ID of Cluster (required)
+     * @param type type of technology (required)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> installAdapterWithHttpInfo(String id, String type) throws ApiException {
-        com.squareup.okhttp.Call call = installAdapterCall(id, type, null, null);
+    public ApiResponse<String> setUpClusterWithHttpInfo(String id, String type) throws ApiException {
+        com.squareup.okhttp.Call call = setUpClusterCall(id, type, null, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Sets up the specified worker to install the specified type of adapter. (asynchronously)
+     * Sets up the specified cluster to install the specified technology and connected it. (asynchronously)
      * 
-     * @param id ID of Worker (required)
-     * @param type type of adapter (required)
+     * @param id ID of Cluster (required)
+     * @param type type of technology (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call installAdapterAsync(String id, String type, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call setUpClusterAsync(String id, String type, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -380,114 +380,8 @@ public class WorkerApi {
             };
         }
 
-        com.squareup.okhttp.Call call = installAdapterCall(id, type, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = setUpClusterCall(id, type, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for registerWorker */
-    private com.squareup.okhttp.Call registerWorkerCall(Worker body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
-        
-        // verify the required parameter 'body' is set
-        if (body == null) {
-            throw new ApiException("Missing the required parameter 'body' when calling registerWorker(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/workers".replaceAll("\\{format\\}","json");
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            "application/json"
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Registers the worker and saves the information.
-     * This registers a worker with the information provided.
-     * @param body worker in a json (required)
-     * @return Worker
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public Worker registerWorker(Worker body) throws ApiException {
-        ApiResponse<Worker> resp = registerWorkerWithHttpInfo(body);
-        return resp.getData();
-    }
-
-    /**
-     * Registers the worker and saves the information.
-     * This registers a worker with the information provided.
-     * @param body worker in a json (required)
-     * @return ApiResponse&lt;Worker&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<Worker> registerWorkerWithHttpInfo(Worker body) throws ApiException {
-        com.squareup.okhttp.Call call = registerWorkerCall(body, null, null);
-        Type localVarReturnType = new TypeToken<Worker>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Registers the worker and saves the information. (asynchronously)
-     * This registers a worker with the information provided.
-     * @param body worker in a json (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call registerWorkerAsync(Worker body, final ApiCallback<Worker> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = registerWorkerCall(body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Worker>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
