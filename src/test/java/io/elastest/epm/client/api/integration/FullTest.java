@@ -23,17 +23,24 @@ public class FullTest {
 
     private final PackageApi packageApi = new PackageApi();
     private final WorkerApi workerApi = new WorkerApi();
-    private final KeyApi keyApi = new KeyApi();
     private final RuntimeApi runtimeApi = new RuntimeApi();
     private final AdapterApi adapterApi = new AdapterApi();
     private final PoPApi poPApi = new PoPApi();
+    private final ClusterApi clusterApi = new ClusterApi();
+    private final DefaultApi defaultApi = new DefaultApi();
     private JSON json;
 
     @Before
     public void init() {
         ApiClient apiClient = new ApiClient();
-        apiClient.setBasePath("http://localhost:8180/v1");
+        apiClient.setBasePath("http://<REPLACE>:8180/v1");
         packageApi.setApiClient(apiClient);
+        clusterApi.setApiClient(apiClient);
+        defaultApi.setApiClient(apiClient);
+        workerApi.setApiClient(apiClient);
+        adapterApi.setApiClient(apiClient);
+        poPApi.setApiClient(apiClient);
+        runtimeApi.setApiClient(apiClient);
         json = new JSON(apiClient);
     }
 
@@ -47,11 +54,11 @@ public class FullTest {
         PoP pop = new PoP();
         pop.setName("tub-os");
         pop.setInterfaceEndpoint("<REPLACE>");
-        pop.addInterfaceInfoItem(new KeyValuePair().key("auth_url").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("auth_url").value("http://<REPLACE>:5000/v2.0"));
         pop.addInterfaceInfoItem(new KeyValuePair().key("password").value("<REPLACE>"));
         pop.addInterfaceInfoItem(new KeyValuePair().key("project_name").value("<REPLACE>"));
         pop.addInterfaceInfoItem(new KeyValuePair().key("username").value("<REPLACE>"));
-        pop.addInterfaceInfoItem(new KeyValuePair().key("type").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("type").value("openstack"));
         PoP poPR = null;
         try {
             poPR = poPApi.registerPoP(pop);
@@ -66,42 +73,23 @@ public class FullTest {
 
         File ansible = new File("src/test/resources/ansible-package.tar");
         ResourceGroup ansibleRG = packageApi.receivePackage(ansible);
-        // Read files from json
+        System.out.print(ansibleRG.toString());
 
-        File w = new File("src/test/resources/key.json");
-        InputStream is = new FileInputStream(w);
-        Scanner s = new Scanner(is).useDelimiter("\\A");
-        String result = s.hasNext() ? s.next() : "";
-        result = result.replace("  ", "");
-        Key key = json.deserialize(result, new TypeToken<Key>(){}.getType());
-
-        w = new File("src/test/resources/worker.json");
-        is = new FileInputStream(w);
-        s = new Scanner(is).useDelimiter("\\A");
-        result = s.hasNext() ? s.next() : "";
-        Worker worker = json.deserialize(result, new TypeToken<Worker>(){}.getType());
-        s.close();
-
-        // Register Key
-        key = keyApi.addKey(key);
-
-        TimeUnit.SECONDS.sleep(15);
-        // Register Worker
-        Worker registeredWorker = workerApi.registerWorker(worker);
+        WorkerFromVDU workerFromVDU = new WorkerFromVDU();
+        workerFromVDU.setVduId(ansibleRG.getVdus().get(0).getId());
+        workerFromVDU.setType(new ArrayList<String>());
+        workerFromVDU.addTypeItem("docker-compose");
+        Worker registeredWorker = defaultApi.createWorker(workerFromVDU);
 
         /*
         DOCKER COMPOSE TEST
          */
 
-        // Setup docker-compose and docker
-        workerApi.installAdapter(registeredWorker.getId(), "docker");
-        workerApi.installAdapter(registeredWorker.getId(), "docker-compose");
-
         // Launch Package
         boolean composeFound = false;
         int tries = 5;
         while (!composeFound && tries > 0){
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.SECONDS.sleep(5);
             List<Adapter> adapters = adapterApi.getAllAdapters();
             for(Adapter adapter : adapters) {
                 if(adapter.getType().equals("docker-compose")) composeFound = true;
@@ -126,8 +114,59 @@ public class FullTest {
          */
         packageApi.deletePackage(resourceGroup.getId());
         workerApi.deleteWorker(registeredWorker.getId());
-        keyApi.deleteKey(key.getId());
         packageApi.deletePackage(ansibleRG.getId());
+    }
+
+    @Test
+    public void fullTestCluster() throws ApiException {
+
+
+        // Check if all needed adapters are already registered
+        assert adapterForType("ansible") != null;
+
+        PoP pop = new PoP();
+        pop.setName("tub-os");
+        pop.setInterfaceEndpoint("<REPLACE>");
+        pop.addInterfaceInfoItem(new KeyValuePair().key("auth_url").value("http://<REPLACE>:5000/v2.0"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("password").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("project_name").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("username").value("<REPLACE>"));
+        pop.addInterfaceInfoItem(new KeyValuePair().key("type").value("openstack"));
+        PoP poPR = null;
+        try {
+            poPR = poPApi.registerPoP(pop);
+        } catch (ApiException e) {
+            System.err
+                    .println("Exception when calling PoPApi#registerPoP");
+            e.printStackTrace();
+        }
+
+
+        // Launch Ansible Package
+
+        File ansible = new File("src/test/resources/ansible-package.tar");
+        ResourceGroup ansibleRG = packageApi.receivePackage(ansible);
+        System.out.print(ansibleRG.toString());
+
+
+        File ansible2 = new File("src/test/resources/ansible-package2.tar");
+        ResourceGroup ansible2RG = packageApi.receivePackage(ansible2);
+        System.out.print(ansible2RG.toString());
+
+        ClusterFromResourceGroup clusterFromResourceGroup = new ClusterFromResourceGroup();
+        clusterFromResourceGroup.setResourceGroupId(ansible2RG.getId());
+        clusterFromResourceGroup.setMasterId(ansible2RG.getVdus().get(0).getId());
+        clusterFromResourceGroup.addTypeItem("kubernetes");
+
+        Cluster cluster = defaultApi.createCluster(clusterFromResourceGroup);
+        System.out.print(cluster.toString());
+
+        defaultApi.addWorker(cluster.getId(), ansibleRG.getVdus().get(0).getId());
+
+        clusterApi.deleteCluster(cluster.getId());
+        packageApi.deletePackage(ansibleRG.getId());
+        packageApi.deletePackage(ansible2RG.getId());
+
     }
 
     private Adapter adapterForType(String type) throws ApiException {
@@ -139,34 +178,5 @@ public class FullTest {
         return adapter;
     }
 
-    @Test
-    @Ignore
-    public void test() throws InterruptedException, ApiException, FileNotFoundException {
 
-        File w = new File("src/test/resources/key.json");
-        InputStream is = new FileInputStream(w);
-        Scanner s = new Scanner(is).useDelimiter("\\A");
-        String result = s.hasNext() ? s.next() : "";
-        result = result.replace("  ", "");
-        Key key = json.deserialize(result, new TypeToken<Key>(){}.getType());
-
-        w = new File("src/test/resources/worker.json");
-        is = new FileInputStream(w);
-        s = new Scanner(is).useDelimiter("\\A");
-        result = s.hasNext() ? s.next() : "";
-        Worker worker = json.deserialize(result, new TypeToken<Worker>(){}.getType());
-        s.close();
-
-        // Register Key
-        key = keyApi.addKey(key);
-
-        TimeUnit.SECONDS.sleep(15);
-        // Register Worker
-        try {
-            Worker registeredWorker = workerApi.registerWorker(worker);
-
-        } finally {
-            keyApi.deleteKey(key.getId());
-        }
-    }
 }
