@@ -27,7 +27,6 @@ public class FullTest {
     private final AdapterApi adapterApi = new AdapterApi();
     private final PoPApi poPApi = new PoPApi();
     private final ClusterApi clusterApi = new ClusterApi();
-    private final DefaultApi defaultApi = new DefaultApi();
     private JSON json;
 
     @Before
@@ -36,7 +35,6 @@ public class FullTest {
         apiClient.setBasePath("http://<REPLACE>:8180/v1");
         packageApi.setApiClient(apiClient);
         clusterApi.setApiClient(apiClient);
-        defaultApi.setApiClient(apiClient);
         workerApi.setApiClient(apiClient);
         adapterApi.setApiClient(apiClient);
         poPApi.setApiClient(apiClient);
@@ -79,7 +77,7 @@ public class FullTest {
         workerFromVDU.setVduId(ansibleRG.getVdus().get(0).getId());
         workerFromVDU.setType(new ArrayList<String>());
         workerFromVDU.addTypeItem("docker-compose");
-        Worker registeredWorker = defaultApi.createWorker(workerFromVDU);
+        Worker registeredWorker = workerApi.createWorker(workerFromVDU);
 
         /*
         DOCKER COMPOSE TEST
@@ -158,10 +156,10 @@ public class FullTest {
         clusterFromResourceGroup.setMasterId(ansible2RG.getVdus().get(0).getId());
         clusterFromResourceGroup.addTypeItem("kubernetes");
 
-        Cluster cluster = defaultApi.createCluster(clusterFromResourceGroup);
+        Cluster cluster = clusterApi.createCluster(clusterFromResourceGroup);
         System.out.print(cluster.toString());
 
-        defaultApi.addWorker(cluster.getId(), ansibleRG.getVdus().get(0).getId());
+        clusterApi.addWorker(cluster.getId(), ansibleRG.getVdus().get(0).getId());
 
         clusterApi.deleteCluster(cluster.getId());
         packageApi.deletePackage(ansibleRG.getId());
