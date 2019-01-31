@@ -110,6 +110,7 @@ public class FullTest {
   }
 
   @Test
+  @Ignore
   public void fullTestCluster() throws ApiException {
 
     // Check if all needed adapters are already registered
