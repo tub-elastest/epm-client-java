@@ -108,9 +108,50 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-//compileJava.dependsOn tasks.googleJavaFormat
+compileJava.dependsOn tasks.googleJavaFormat
 
 javadoc {
     source = sourceSets.main.allJava
     classpath = configurations.compile
+}
+
+task writeNewPom {
+    doLast {
+        pom {
+            project {
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                name 'epm-java-client'
+                description 'Java client for the ElasTest Platform Manager (EPM).'
+                url 'https://github.com/tub-elastest/epm-client-java'
+                developers {
+                    developer {
+                        id 'elastest.io'
+		                name 'elastest.io Community'
+		                organizationUrl 'http://elastest.io'
+                    }
+                }
+                scm {
+                    connection 'scm:git:git://github.com/tub-elastest/epm-client-java.git'
+                    developerConnection 'scm:git:ssh://github.com:/-elastest/epm-client-java.git'
+		            url 'http://github.com/tub-elastest/epm-client-java/tree/master'
+                }
+                /*distributionManagement {
+                    snapshotRepository {
+                        id 'ossrh'
+                        url 'https://oss.sonatype.org/content/repositories/snapshots'
+                    }
+                    repository {
+                        id 'ossrh'
+                        url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                    }
+                }*/
+            }
+        }.writeTo("build/newPom.xml")
+    }
 }
