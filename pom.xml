@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.elastest.epm</groupId>
   <artifactId>epm-client</artifactId>
-  <version>0.9.1-SNAPSHOT</version>
+  <version>0.9.1</version>
   <name>epm-java-client</name>
   <packaging>jar</packaging>
   <description>Java client for the ElasTest Platform Manager (EPM).</description>
@@ -153,7 +153,7 @@
         <configuration>
           <serverId>ossrh</serverId>
           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <autoReleaseAfterClose>false</autoReleaseAfterClose>
         </configuration>
       </plugin>
       <plugin>
