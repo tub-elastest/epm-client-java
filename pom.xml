@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.elastest.epm</groupId>
   <artifactId>epm-client</artifactId>
-  <version>0.9.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>epm-java-client</name>
   <packaging>jar</packaging>
   <description>Java client for the ElasTest Platform Manager (EPM).</description>
